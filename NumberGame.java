@@ -34,7 +34,7 @@ public class NumberGame {
 
                 if(generateNum == guessNum)
                 {
-                    System.out.println("Congratulations ! The guess number is correct");
+                    System.out.println("Congratulations ! Your guess number is correct");
                     totalWon++;
                     break;
                 }
