@@ -18,6 +18,7 @@ public class NumberGame {
             System.out.println("-------------------------------------");
 
             int attempt = 0;
+            System.out.println("You can Enter the number between 1 - 100");
             System.out.println("You have a 3 limited attempt");
 
             while (attempt < 3) {
