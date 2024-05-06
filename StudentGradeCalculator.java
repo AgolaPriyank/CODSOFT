@@ -58,7 +58,7 @@ class StudentGradeCalculator {
 
         System.out.println("-------------------------------------------");
         System.out.println();
-        System.out.println("----------Display Results---------");
+        System.out.println("-----------Display Results----------");
         System.out.println();
         System.out.println("=> Your achieved total marks = " + totalMarks);
         System.out.println("=> Your achieved Average Percentage = " + AveragePercentage);
