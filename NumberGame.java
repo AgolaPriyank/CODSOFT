@@ -8,8 +8,8 @@ public class NumberGame {
         Random rdn = new Random();
 
         boolean flag = true;
-         int totalWon = 0;
-         int totalAttempt = 0;
+        int totalWon = 0;
+        int totalAttempt = 0;
 
         while (flag) {
 
@@ -24,38 +24,33 @@ public class NumberGame {
             while (attempt < 3) {
 
                 attempt++;
-                
+
                 System.out.println();
-                
-                System.out.println(attempt+". Guess the number for the generated number");
+
+                System.out.println(attempt + ". Guess the number for the generated number");
                 int guessNum = sc.nextInt();
 
                 totalAttempt++;
-                
 
-                if(generateNum == guessNum)
-                {
+                if (generateNum == guessNum) {
                     System.out.println("Congratulations ! Your guess number is correct");
                     totalWon++;
                     break;
                 }
 
-                else if(generateNum > guessNum)
-                {
+                else if (generateNum > guessNum) {
                     System.out.println(" generated Number is too high");
                 }
 
-                else
-                {
+                else {
                     System.out.println(" generated Number is too low");
                 }
-
 
             }
 
             System.out.println("you wont to play game again than enter true otherwise enter false ");
             flag = sc.nextBoolean();
-            
+
         }
 
         System.out.println("-------- Score Board -----------");
