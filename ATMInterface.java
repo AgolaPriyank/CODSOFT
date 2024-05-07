@@ -1,5 +1,21 @@
 import java.util.Scanner;
 
+class GreaterWithdrawAmountException extends Exception {
+
+    public String toString() {
+
+        return "withdraw amount is greater then totalBalance therefore transactions is failure. Plase try again with leass amount";
+    }
+}
+
+class GreaterDepositAmountException extends Exception {
+
+    public String toString() {
+
+        return "Transactions is failure because amount for deposit is greater then 200000. Plase try again with leass amount";
+    }
+}
+
 abstract class ATMMachine {
 
     abstract public void withdraw();
@@ -22,27 +38,36 @@ class BankAccount extends ATMMachine {
         this.totalBalance = amount;
     }
 
-    public void withdraw(double amount) {
+    public void withdraw(double amount) throws GreaterWithdrawAmountException {
 
         if ((totalBalance - 1500) >= amount) {
 
             totalBalance = totalBalance - amount;
+
             System.out.println(amount + " amount is withdrawed by you and transactions is successful.");
             System.out.println();
         }
 
         else {
 
-            System.out.println("withdraw amount is greater then totalBalance therefore transactions is failure.");
-            System.out.println();
+            throw new GreaterWithdrawAmountException();
         }
     }
 
-    public void deposit(double amount) {
+    public void deposit(double amount) throws GreaterDepositAmountException {
 
-        totalBalance = totalBalance + amount;
-        System.out.println(amount + " amount is deposited by you and transactions is successful.");
-        System.out.println();
+        if (amount <= 200000) {
+
+            totalBalance = totalBalance + amount;
+
+            System.out.println(amount + " amount is deposited by you and transactions is successful.");
+            System.out.println();
+        }
+
+        else {
+
+            throw new GreaterDepositAmountException();
+        }
     }
 
     public void checkBalance() {
@@ -80,25 +105,46 @@ public class ATMInterface {
             System.out.println("4. Enter '0' for exit from program");
 
             int userChoice = sc.nextInt();
+
             System.out.println("------------------------------------------------");
             System.out.println();
 
             switch (userChoice) {
+
                 case 1:
-                    System.out.println("How much amount you want to withdraw : ");
-                    double amountw = sc.nextDouble();
-                    System.out.println();
-                    u1.withdraw(amountw);
+
+                    try {
+                        System.out.println("How much amount you want to withdraw : ");
+                        double amountw = sc.nextDouble();
+                        System.out.println();
+                        u1.withdraw(amountw);
+                    }
+
+                    catch (GreaterWithdrawAmountException w) {
+                        System.out.println(w);
+                        System.out.println();
+                    }
+
                     break;
 
                 case 2:
-                    System.out.println("How much amount you want to deposit : ");
-                    double amountd = sc.nextDouble();
-                    System.out.println();
-                    u1.deposit(amountd);
+
+                    try {
+                        System.out.println("How much amount you want to deposit : ");
+                        double amountd = sc.nextDouble();
+                        System.out.println();
+                        u1.deposit(amountd);
+                    }
+
+                    catch (GreaterDepositAmountException d) {
+                        System.out.println(d);
+                        System.out.println();
+                    }
+
                     break;
 
                 case 3:
+
                     u1.checkBalance();
                     break;
 
@@ -106,7 +152,9 @@ public class ATMInterface {
                     System.exit(0);
 
                 default:
+                
                     System.out.println(" Enter Invalide Input ! , plase enter 0, 1, 2 , 3 this !");
+                    System.out.println();
                     break;
 
             }
